@@ -6,8 +6,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cognizant.entity.EducationLoan;
@@ -23,16 +25,21 @@ public class ViewEducationLoanController {
 	private static final Logger LOG = Logger.getLogger(ViewEducationLoanController.class);
 
 	@RequestMapping(value = "/viewEducationLoanDetails", method = RequestMethod.GET)
-	public String getEducationLoans() {
-
+	public String getEducationLoans(Model model,@RequestParam("AccNo") String AccNo,@RequestParam("AccName") String AccName) {
+		model.addAttribute("msg", AccNo);
+		model.addAttribute("name",AccName);
 		return "viewEducationLoanDetails";
 	}
 
 	@RequestMapping(value = "/viewEducationLoanDetails1", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 
-	public @ResponseBody List<EducationLoan> getEduLoan() {
+	public @ResponseBody List<EducationLoan> getEduLoan(@RequestParam("AccNo") String msg) {
+		long accountNumber=Long.parseLong(msg);
+		//System.out.println(msg);
+		//System.out.println(accountNumber);
 
-		List<EducationLoan> eduLoan = service.retriveEducationLoanDetails(1234567890123456L);
+
+		List<EducationLoan> eduLoan = service.retriveEducationLoanDetails(accountNumber);
 
 		LOG.info("in control");
 

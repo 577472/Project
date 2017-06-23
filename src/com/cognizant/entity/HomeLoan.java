@@ -1,7 +1,5 @@
 package com.cognizant.entity;
 
-
-
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -11,9 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.cognizant.entity.UserDetails;
@@ -30,37 +31,39 @@ public class HomeLoan {
 
 	// @Column(name="LOAN_AMOUNT")
 	@NotNull(message = "Mandatory field")
-	
-	private long loanAmount;
-
+	@Min(1)
+	//@Size(max=11)
+	private Long loanAmount;
 	// @Column(name="LOAN_DURATION")
 	@NotNull(message = "Mandatory field")
-	private int loanDuration;
-
+	private Integer loanDuration;
 	// long accountNumber;
-	
-	@DateTimeFormat(pattern = "MM/dd/yyyy")
-	
+	//@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date loanApplyDate;
 	@NotNull(message = "Mandatory field")
-	private long annualIncome;
-	@NotNull(message = "Mandatory field")
+	private Long annualIncome;
+	
+	//@NotNull(message = "Mandatory field")
+	@NotEmpty
 	private String companyName;
-	@NotNull(message = "Mandatory field")
+	//@NotNull(message = "Mandatory field")
+@NotEmpty
 	private String designation;
 	@NotNull(message = "Mandatory field")
-	private int totalExperience;
+
+	private Integer totalExperience;
 	@NotNull(message = "Mandatory field")
-	private int currentExperience;
+
+	private Integer currentExperience;
 
 	@Id
-	private long loanAccountNumber;
+	private Long loanAccountNumber;
 
-	public long getLoanAccountNumber() {
+	public Long getLoanAccountNumber() {
 		return loanAccountNumber;
 	}
 
-	public void setLoanAccountNumber(long loanAccountNumber) {
+	public void setLoanAccountNumber(Long loanAccountNumber) {
 		this.loanAccountNumber = loanAccountNumber;
 	}
 
@@ -86,19 +89,19 @@ public class HomeLoan {
 		this.homeLoanId = homeLoanId;
 	}
 
-	public long getLoanAmount() {
+	public Long getLoanAmount() {
 		return loanAmount;
 	}
 
-	public void setLoanAmount(long loanAmount) {
+	public void setLoanAmount(Long loanAmount) {
 		this.loanAmount = loanAmount;
 	}
 
-	public int getLoanDuration() {
+	public Integer getLoanDuration() {
 		return loanDuration;
 	}
 
-	public void setLoanDuration(int loanDuration) {
+	public void setLoanDuration(Integer loanDuration) {
 		this.loanDuration = loanDuration;
 	}
 
@@ -110,11 +113,11 @@ public class HomeLoan {
 		this.loanApplyDate = loanApplyDate;
 	}
 
-	public long getAnnualIncome() {
+	public Long getAnnualIncome() {
 		return annualIncome;
 	}
 
-	public void setAnnualIncome(long annualIncome) {
+	public void setAnnualIncome(Long annualIncome) {
 		this.annualIncome = annualIncome;
 	}
 
@@ -134,19 +137,19 @@ public class HomeLoan {
 		this.designation = designation;
 	}
 
-	public int getTotalExperience() {
+	public Integer getTotalExperience() {
 		return totalExperience;
 	}
 
-	public void setTotalExperience(int totalExperience) {
+	public void setTotalExperience(Integer totalExperience) {
 		this.totalExperience = totalExperience;
 	}
 
-	public int getCurrentExperience() {
+	public Integer getCurrentExperience() {
 		return currentExperience;
 	}
 
-	public void setCurrentExperience(int currentExperience) {
+	public void setCurrentExperience(Integer currentExperience) {
 		this.currentExperience = currentExperience;
 	}
 
@@ -159,8 +162,8 @@ public class HomeLoan {
 	 * ", currentExperience=" + currentExperience + ", loanAccountNumber=" +
 	 * loanAccountNumber + "]"; }
 	 */
-	public HomeLoan(long loanAmount, int loanDuration, Date loanApplyDate, long annualIncome, String companyName,
-			String designation, int totalExperience, int currentExperience, UserDetails user) {
+	public HomeLoan(Long loanAmount, Integer loanDuration, Date loanApplyDate, Long annualIncome, String companyName,
+			String designation, Integer totalExperience, Integer currentExperience, UserDetails user) {
 		super();
 		this.loanAmount = loanAmount;
 		this.loanDuration = loanDuration;

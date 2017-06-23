@@ -15,6 +15,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.cognizant.entity.EducationLoan;
 import com.cognizant.entity.UserDetails;
 import com.cognizant.exception.BankMangementException;
@@ -32,21 +34,25 @@ public class ApplyEducationLoanController {
 	private static final Logger LOG = Logger.getLogger(ApplyEducationLoanController.class);
 
 	@RequestMapping(value = "/insertEducationLoan", method = RequestMethod.GET)
-	public String getEducationLoan(Model model) {
+	public String getEducationLoan(Model model,@RequestParam("AccName") String AccName,@RequestParam("AccNo") String AccNo) {
 		model.addAttribute("educationLoan", new EducationLoan());
+		//System.out.println(model.addAttribute("name", AccName));
+		model.addAttribute("msg", AccNo);
+
+		model.addAttribute("name", AccName);
 		return "insertEducationLoan";
 	}
 
 	@RequestMapping(value = "/insertEducationLoan", method = RequestMethod.POST)
 	public String initiateEducationLoan(@ModelAttribute("educationLoan") @Valid EducationLoan educationLoan,
-			BindingResult result, Model model) {
+			BindingResult result, Model model,@RequestParam("AccNo") String msg) {
+		long accountNumber=Long.parseLong(msg);
+		//System.out.println(msg);
+		//System.out.println(accountNumber);
 
-		String id = service.generateLoanId(educationLoan.getIdCardNumber());
-		educationLoan.setEducationLoanID(id);
-		educationLoan.setEduLoanAccountNumber(service.generateLoanAccountNumber());
-
+		
 		try {
-			service.updateEducationLoanDetails(educationLoan, 1234567890123456L);
+			service.updateEducationLoanDetails(educationLoan, accountNumber);
 		} catch (ConstraintViolationException e) {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();
@@ -70,22 +76,22 @@ public class ApplyEducationLoanController {
 			String sb1[] = sb.split(":");
 			
 			result.rejectValue(sb1[0],"", sb1[1]);
-			
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
 		model.addAttribute("m1", educationLoan.getEducationLoanID());
+		model.addAttribute("m2", educationLoan.getEduLoanAccountNumber());
+		model.addAttribute("msg",msg );
 
 		if (result.hasErrors()) {
 			return "insertEducationLoan";
 		}
-		if(flag)
 
-		return "successEducationLoan";
+		
 		else
-			return "insertEducationLoan";
+			return "successEducationLoan";
 			
 
 	}

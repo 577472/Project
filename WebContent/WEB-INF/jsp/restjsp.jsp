@@ -1,18 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Welcome!</title>
+<title>Insert title here</title>
 </head>
-<script type = "text/javascript" >
-        function preventBack() { window.history.forward(1); }
-        setTimeout("preventBack()", 0);
-        window.onunload = function () { null };
-</script>
 <style>
 .login
 { width:400px;
@@ -85,7 +78,7 @@ align: center;
 		<h3>LOGIN</h3>
 	</center>
 	<!-- Please add your application links by replacing the below sample links -->
-	<form method="GET" action="mvc/home" name="userForm">
+	<form method="POST" action="mvc/rest" name="userForm">
 		<br>
 		
 		<center><div class="input">
@@ -98,6 +91,16 @@ align: center;
 				style="color: #FF0000">Enter Account Number.</span></td>
 			<td><span
 				ng-show="userForm.AccNo.$error.pattern && !userForm.AccNo.$pristine"
+				style="color: #FF0000">Only Numeric input.</span></td>
+				<input Placeholder="Loan Account Number" type="Text" maxlength="16"
+				name="LoanAccNo" ng-model="LoanAccountNumber" required="true"
+				ng-pattern="/^[0-9/b./b]{1,16}$/"></input>
+			<td><errors path="AccountNumber" cssClass="error" /></td>
+			<td><span
+				ng-show="userForm.LoanAccNo.$error.required && !userForm.LoanAccNo.$pristine"
+				style="color: #FF0000">Enter Account Number.</span></td>
+			<td><span
+				ng-show="userForm.AccNo.$error.pattern && !userForm.LoanAccNo.$pristine"
 				style="color: #FF0000">Only Numeric input.</span></td>
 			<center>
 				<button class="button" type="submit" ng-disabled="userForm.$invalid"><span>Login</span></button>

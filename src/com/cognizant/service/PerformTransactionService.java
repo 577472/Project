@@ -25,7 +25,7 @@ public class PerformTransactionService {
 	@Transactional
 	public void updateTransactionDetails(TransactionDetails transaction, Long accountNumber)
 			throws InvalidAccountBalance {
-		System.out.println("inside service");
+		//System.out.println("inside service");
 		UserDetails user = ptDAO.updateTransactionDetails(accountNumber);
 
 		transaction.setUser(user);
@@ -40,9 +40,9 @@ public class PerformTransactionService {
 
 	}
 
-	private void updateUser(int transactionAmount, UserDetails user, String transactionType)
+	private void updateUser(Double transactionAmount, UserDetails user, String transactionType)
 			throws InvalidAccountBalance {
-		int newBalance = 0;
+		Double newBalance = 0.0;
 
 		if (transactionType.equals("DEPOSIT")) {
 			newBalance = user.getAccountBalance() + transactionAmount;
@@ -54,11 +54,11 @@ public class PerformTransactionService {
 
 			if (newBalance < 5000 && user.getAccountType().equals("SAVINGS")) {
 
-				throw new InvalidAccountBalance("Saving Account's Balance can't be less than 5000");
+				throw new InvalidAccountBalance("transactionAmount:Saving Account's Balance can't be less than 5000");
 
 			} else if (newBalance < 0) {
 
-				throw new InvalidAccountBalance("Insufficient Balance");
+				throw new InvalidAccountBalance("transactionAmount:Insufficient Balance");
 			}
 
 			else {

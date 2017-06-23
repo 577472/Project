@@ -1,7 +1,6 @@
 package com.cognizant.service;
 
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,7 +18,7 @@ public class ApplyEducationLoanService {
 	ApplyEducationLoanDAO dao;
 	EducationLoan edu;
 	UserDetails user;
-
+	ApplyEducationLoanService service;
 	private static final Logger LOG = Logger.getLogger(ApplyEducationLoanService.class);
 
 	public String generateLoanId(long l) {
@@ -42,6 +41,9 @@ public class ApplyEducationLoanService {
 
 	public void updateEducationLoanDetails(EducationLoan e1, long i) {
 		
+		String id = generateLoanId(e1.getIdCardNumber());
+		e1.setEducationLoanID(id);
+		e1.setEduLoanAccountNumber(generateLoanAccountNumber());
 		Double courseFee= e1.getCourseFee();// TODO Auto-generated method stub
 		/*if(e1.getEduLoanDuration()!=5 || e1.getEduLoanDuration()!=10 )
 		{
@@ -54,7 +56,15 @@ public class ApplyEducationLoanService {
 		}
 		
 		String name=e1.getFatherName();
-		if(!(name.equalsIgnoreCase("A-Z")))
+		 char[] chars = name.toCharArray();
+int count=0;
+		    for (char c : chars) {
+		        if(!Character.isLetter(c)) {
+		        	count++;
+		        	
+		        }
+		    }
+		    if(count>=1)
 		{
 			throw new BankMangementException("fatherName:Father name should contain only alphabets and space.");
 		}

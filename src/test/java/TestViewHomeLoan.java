@@ -22,10 +22,10 @@ public class TestViewHomeLoan {
 
 	@Test
 	public void test() {
-		System.out.println("1");
+		//System.out.println("1");
 
 		homeLoan = viewHOmeLoanService.retrieveHomeDetails(1234567890123456l);
-		System.out.println(homeLoan);
+		//System.out.println(homeLoan);
 	}
 
 }

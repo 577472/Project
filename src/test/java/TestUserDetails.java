@@ -22,13 +22,13 @@ public class TestUserDetails {
 
 	//@Before
 	public void setup() {
-		UserDetails user = new UserDetails(5446464484894949L, "savings", "Akshay", 24000);
+		UserDetails user = new UserDetails(5446464484894949L, "savings", "Akshay", 24000d);
 		dao = new UserDetailsDAO();
 	}
 
 	 @Test
 	public void addUser() {
-		UserDetails user = new UserDetails(1234567890123456L,  "savings","sumit", 85000);
+		UserDetails user = new UserDetails(1234567890123456L,  "savings","sumit", 85000d);
 		dao.addUser(user);
 		assertTrue(true);
 

@@ -20,4 +20,12 @@ public class UserDetailsDAO {
 
 	}
 
+	public UserDetails getUserDetails(long l) {
+		// TODO Auto-generated method stub
+		UserDetails retrive = em.find(UserDetails.class, l);
+
+		return retrive;
+	}
+	
+
 }

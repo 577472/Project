@@ -22,7 +22,6 @@ table {
     border-collapse: collapse;
     width: 80%;
     align:center;
-    overflow: scroll;
 }
 
 th {
@@ -33,10 +32,10 @@ th {
 tr:hover{background-color:lightgray;}
 tr:nth-child(even){background-color: #f2f2f2}
 </style>
-<title>View Education Loan</title>
+<title>Insert title here</title>
 </head>
-<center><h2>Education Loan Details</h2></center>
-<h3>Welcome ${name }</h3>
+<center><h2>Home Loan Details</h2></center>
+<h3>Welcome ${ name}</h3>
 <p align="center">
 			<button>
 					<a
@@ -45,33 +44,31 @@ tr:nth-child(even){background-color: #f2f2f2}
 <body ng-app="myApp">
 	<div ng-controller="EmpCtrl">
 
-
 		<input type="text" ng-model="search.$"
 			placeholder="Search By any" />
 		<hr />
 
 		<center><table>
 			<tr>
-				<th>Loan Account Number</th>
-				<th>Loan Id</th>
+				<th>Homeloan Account Number</th>
+				<th>Home Loan Id</th>
 				<th>Loan Amount</th>
 				<th>Loan Duration</th>
-				<th>Father Annual Income</th>
-				<th>Course Fee</th>
-				<th>Course Name</th>
-				<th>Father Name</th>
-				<th>Id Card Number</th>
+				<th>Annual Income</th>
+				<th>Company Name</th>
+				<th>Designation</th>
+				
 			</tr>
-			<tr ng-repeat="e in eduLoan | filter: search">
-				<td>{{e.eduLoanAccountNumber}}</td>
-				<td>{{e.educationLoanID}}</td>
-				<td>{{e.eduLoanAmount}}</td>
-				<td>{{e.eduLoanDuration}}</td>
-				<td>{{e.fatherAnnualIncome}}</td>
-				<td>{{e.courseFee}}</td>
-				<td>{{e.courseName}}</td>
-				<td>{{e.fatherName}}</td>
-				<td>{{e.idCardNumber}}</td>
+			<tr ng-repeat="homeLoan in homeLoans | filter: search">
+				<td>{{homeLoan.loanAccountNumber}}</td>
+				<td>{{homeLoan.homeLoanId}}</td>
+				<td>{{homeLoan.loanAmount}}</td>
+				<td>{{homeLoan.loanDuration}}</td>
+				<td>{{homeLoan.annualIncome}}</td>
+				<td>{{homeLoan.companyName}}</td>
+				<td>{{homeLoan.designation}}</td>
+				
+				
 			</tr>
 		</table></center>
 	</div>
@@ -82,12 +79,11 @@ tr:nth-child(even){background-color: #f2f2f2}
         app.controller('EmpCtrl', function($scope, $http){
             $http({
               method: 'GET',
-              url: 'http://localhost:8080/BaseCodeSlice_BankManagementSystem/mvc/viewEducationLoanDetails1?AccNo=${msg}'
+              url: 'http://localhost:8080/BaseCodeSlice_BankManagementSystem/mvc/viewHome?LoanAccNo=${loan}'
             }).then(res=>res.data)
             .then(data => {
             	console.log(data);
-            	$scope.eduLoan = data;
-            	console.log($scope.eduLoan);
+            	$scope.homeLoans = data;
             })
         
            

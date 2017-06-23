@@ -24,12 +24,12 @@ public class TestPerformTransaction {
 
 	@Before
 	public void setUp() {
-		transaction = new TransactionDetails("nhpjk", "DEPOSIT", 150001);
+		transaction = new TransactionDetails("nhpjk", "DEPOSIT", 150001d);
 	}
 
 	@Test
 	public void testUpdateTransactionDetails() {
-		System.out.println(transaction);
+		//System.out.println(transaction);
 		service.updateTransactionDetails(transaction, 1234567890123546L);
 		assertTrue(true);
 	}

@@ -45,14 +45,14 @@ public class ApplyHomeLoanService {
 
 	public void updateHomeLoanDetails(long l, HomeLoan e6) throws BankMangementException{
 		long income= e6.getAnnualIncome();
-		System.out.println(income);
+		//System.out.println(income);
 		long loanAmount = e6.getLoanAmount();
 		if(e6.getLoanDuration()%5!=0 || e6.getLoanDuration()>=20 || e6.getLoanDuration()<=0)
 		{
 			throw new BankMangementException("loanDuration:Please enter valid loan duration");
 		}
 		
-		if(loanAmount!=(.10*income) )
+		if(loanAmount!=(.10*income)||loanAmount>=9223372036854775807l )
 		{
 			throw new BankMangementException("loanAmount:Please enter valid loan amount");
 		}

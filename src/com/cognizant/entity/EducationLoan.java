@@ -8,7 +8,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,9 +15,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -35,12 +31,12 @@ public class EducationLoan {
 	// private int Account_Number;
 	@Id
 	@Column(name = "Edu_Loan_Account_Number")
-	private long eduLoanAccountNumber;
+	private Long eduLoanAccountNumber;
 
-	//@NotNull(message = "Mandatory field")
+	@NotNull(message = "Mandatory field")
 	@Min(1)
 	@Column(name = "Edu_Loan_Amount")
-	private double eduLoanAmount;
+	private Double eduLoanAmount;
 
 	
 	@Column(name = "Loan_Apply_Date")
@@ -48,20 +44,20 @@ public class EducationLoan {
 	//@NotNull(message = "Mandatory field")
 	private Date loanApplyDate;
 
-	//@NotNull(message = "Mandatory field")
+	@NotNull(message = "Mandatory field")
 	@Column(name = "Edu_Loan_Duration")
 	private int eduLoanDuration;
 
-	//@NotNull(message = "Mandatory field")
+	@NotNull(message = "Mandatory field")
 	@Min(1)
 	@Column(name = "Father_Annual_Income")
-	private double fatherAnnualIncome;
+	private Double fatherAnnualIncome;
 
-	//@NotNull(message = "Mandatory field")
-	//@Min(0)
-	//@Max(2000000)
+	@NotNull(message = "Mandatory field")
+	@Min(0)
+	@Max(2000000)
 	@Column(name = "Course_Fee")
-	private double courseFee;
+	private Double courseFee;
 
 	//@NotBlank(message = "Mandatory field")
 	@NotEmpty
@@ -74,10 +70,10 @@ public class EducationLoan {
 	private String fatherName;
 	
 	//@Size(max=10)
-	//@NotNull(message = "Mandatory field")
+	@NotNull(message = "Mandatory field")
 	@Min(1)
 	@Column(name = "ID_Card_Number")
-	private long idCardNumber;
+	private Long idCardNumber;
 
 	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -99,8 +95,8 @@ public class EducationLoan {
 	 * ", user=" + user + "]"; }
 	 */
 
-	public EducationLoan(double eduLoanAmount, Date loanApplyDate, int eduLoanDuration, double fatherAnnualIncome,
-			double courseFee, String courseName, String fatherName,long idCardNumber, UserDetails user) {
+	public EducationLoan(Double eduLoanAmount, Date loanApplyDate, int eduLoanDuration, Double fatherAnnualIncome,
+			Double courseFee, String courseName, String fatherName,Long idCardNumber, UserDetails user) {
 		super();
 
 		// this.eduLoanAccountNumber = eduLoanAccountNumber;
@@ -123,19 +119,19 @@ public class EducationLoan {
 		this.educationLoanID = educationLoanID;
 	}
 
-	public long getEduLoanAccountNumber() {
+	public Long getEduLoanAccountNumber() {
 		return eduLoanAccountNumber;
 	}
 
-	public void setEduLoanAccountNumber(long eduLoanAccountNumber) {
+	public void setEduLoanAccountNumber(Long eduLoanAccountNumber) {
 		this.eduLoanAccountNumber = eduLoanAccountNumber;
 	}
 
-	public double getEduLoanAmount() {
+	public Double getEduLoanAmount() {
 		return eduLoanAmount;
 	}
 
-	public void setEduLoanAmount(double eduLoanAmount) {
+	public void setEduLoanAmount(Double eduLoanAmount) {
 		this.eduLoanAmount = eduLoanAmount;
 	}
 
@@ -155,19 +151,19 @@ public class EducationLoan {
 		this.eduLoanDuration = eduLoanDuration;
 	}
 
-	public double getFatherAnnualIncome() {
+	public Double getFatherAnnualIncome() {
 		return fatherAnnualIncome;
 	}
 
-	public void setFatherAnnualIncome(double fatherAnnualIncome) {
+	public void setFatherAnnualIncome(Double fatherAnnualIncome) {
 		this.fatherAnnualIncome = fatherAnnualIncome;
 	}
 
-	public double getCourseFee() {
+	public Double getCourseFee() {
 		return courseFee;
 	}
 
-	public void setCourseFee(double courseFee) {
+	public void setCourseFee(Double courseFee) {
 		this.courseFee = courseFee;
 	}
 
@@ -187,11 +183,11 @@ public class EducationLoan {
 		this.fatherName = fatherName;
 	}
 
-	public long getIdCardNumber() {
+	public Long getIdCardNumber() {
 		return idCardNumber;
 	}
 
-	public void setIdCardNumber(long idCardNumber) {
+	public void setIdCardNumber(Long idCardNumber) {
 		this.idCardNumber = idCardNumber;
 	}
 

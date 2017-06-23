@@ -33,7 +33,7 @@ public class TransactionDetails {
 	@NotNull(message="Mandatory field")
 	@Min(1)
 	@Column(name="TRANSACTION_AMOUNT")
-	int transactionAmount;
+	Double transactionAmount;
 	
 	@JsonBackReference
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
@@ -65,11 +65,11 @@ public class TransactionDetails {
 		this.transactionType = transactionType;
 	}
 
-	public int getTransactionAmount() {
+	public Double getTransactionAmount() {
 		return transactionAmount;
 	}
 
-	public void setTransactionAmount(int accountBalance) {
+	public void setTransactionAmount(Double accountBalance) {
 		this.transactionAmount = accountBalance;
 	}
 	
@@ -88,7 +88,7 @@ public class TransactionDetails {
 	
 	
 
-	public TransactionDetails(String transactionDescription, String transactionType, int transactionAmount) {
+	public TransactionDetails(String transactionDescription, String transactionType, Double transactionAmount) {
 		super();
 		this.transactionDescription = transactionDescription;
 		this.transactionType = transactionType;

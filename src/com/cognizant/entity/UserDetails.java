@@ -13,7 +13,7 @@ public class UserDetails {
 
 	@Id
 	@Column(name = "ACCOUNT_NUMBER")
-	long accountNumber;
+	Long accountNumber;
 
 	@Column(name = "ACCOUNT_TYPE", length = 20)
 	// @Type(type="text")
@@ -25,7 +25,7 @@ public class UserDetails {
 
 	@Column(name = "ACCOUNT_BALANCE", length = 20)
 	// @Type(type="number")
-	int accountBalance;
+	Double accountBalance;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonBackReference
@@ -42,7 +42,7 @@ public class UserDetails {
 	public UserDetails() {
 	}
 
-	public UserDetails(long accountNumber, String accountType, String acountHolderName, int accountBalance) {
+	public UserDetails(Long accountNumber, String accountType, String acountHolderName,Double accountBalance) {
 		super();
 		this.accountNumber = accountNumber;
 		this.accountType = accountType;
@@ -58,11 +58,11 @@ public class UserDetails {
 	 */
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "ACCOUNT_NUMBER")
-	public long getAccountNumber() {
+	public Long getAccountNumber() {
 		return accountNumber;
 	}
 
-	public void setAccountNumber(long accountNumber) {
+	public void setAccountNumber(Long accountNumber) {
 		this.accountNumber = accountNumber;
 	}
 
@@ -82,11 +82,11 @@ public class UserDetails {
 		this.acountHolderName = acountHolderName;
 	}
 
-	public int getAccountBalance() {
+	public Double getAccountBalance() {
 		return accountBalance;
 	}
 
-	public void setAccountBalance(int accountBalance) {
+	public void setAccountBalance(Double accountBalance) {
 		this.accountBalance = accountBalance;
 	}
 

@@ -8,8 +8,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Success</title>
 </head>
+<Style>
+h2{
+padding-top:30px;
+font-style: italic;
+}
+</Style>
 <body>
-	<h1>LoanAccount Number is: ${m1}</h1>
-	<h1>Loan ID is: ${m2}</h1>
+<center><h2> Successfully!! Loan is applied</h2></center>
+	<center><h2>LoanAccount Number is: ${m1}</h2></center>
+	<center><h2>Loan ID is: ${m2}</h2></center>
+	<p align="center">
+			<button>
+					<a
+						href="http://localhost:8080/BaseCodeSlice_BankManagementSystem/mvc/home?AccNo=${msg}">Home</a>
+				</button></p>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.cognizant.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -21,12 +22,21 @@ public class ViewHomeLoanDao {
 
 	@Transactional
 	public List<HomeLoan> retrieveHomeDetails(long l) {
-
+		
 		UserDetails retrive = em.find(UserDetails.class, l);
+		
 		LOG.info(retrive);
 		LOG.info(retrive.getHomeLoan());
+		//String name=retrive.getAcountHolderName();
 
-		return retrive.getHomeLoan();
+	return retrive.getHomeLoan();
+	}
+
+	public List<HomeLoan> retrieve(long accountNumber) {
+		// TODO Auto-generated method stub
+		HomeLoan retrive=em.find(HomeLoan.class,accountNumber);
+		System.out.println(retrive);
+		return null;
 	}
 
 }
